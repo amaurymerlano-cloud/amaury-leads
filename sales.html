@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2592/2592317.png" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLGS | 100-200 Daily Leads for $1 | Amaury Recommends</title>
@@ -83,5 +84,36 @@
         }
         setInterval(updateTimer, 1000); updateTimer();
     </script>
+<div id="popup-box" class="fixed bottom-5 left-5 glass p-4 rounded-xl flex items-center gap-3 translate-y-32 transition-all duration-500 z-50 shadow-2xl border border-white/10 text-black text-sm">
+    <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center font-bold" id="popup-initial">J</div>
+    <div>
+        <p class="font-bold" id="popup-text">John from Texas just joined</p>
+        <p class="text-xs text-slate-400" id="popup-time">2 minutes ago</p>
+    </div>
+</div>
+
+<script>
+    const leads = [
+        { name: "Carlos from Miami", initial: "C" },
+        { name: "Sarah from London", initial: "S" },
+        { name: "David from Sydney", initial: "D" },
+        { name: "Elena from Madrid", initial: "E" },
+        { name: "Michael from New York", initial: "M" }
+    ];
+
+    function showPopup() {
+        const lead = leads[Math.floor(Math.random() * leads.length)];
+        document.getElementById('popup-text').innerText = lead.name + " just joined";
+        document.getElementById('popup-initial').innerText = lead.initial;
+        const box = document.getElementById('popup-box');
+        
+        box.classList.remove('translate-y-32');
+        setTimeout(() => { box.classList.add('translate-y-32'); }, 5000);
+    }
+
+    // Show first popup after 3 seconds, then every 12 seconds
+    setTimeout(showPopup, 3000);
+    setInterval(showPopup, 12000);
+</script>
 </body>
 </html>

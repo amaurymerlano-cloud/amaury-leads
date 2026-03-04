@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2592/2592317.png" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The 90-Day Challenge | Amaury Recommends</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #020617; color: white; }
+        .glow { box-shadow: 0 0 50px -12px rgba(59, 130, 246, 0.5); }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+    <div class="max-w-md w-full text-center">
+        <div class="mb-8">
+            <h1 class="text-4xl font-800 tracking-tighter mb-4">THE 90-DAY <span class="text-blue-500 italic">CHALLENGE.</span></h1>
+            <p class="text-slate-400">Stop "trying" affiliate marketing. Start followings a proven day-by-day roadmap to $1k/month.</p>
+        </div>
+
+        <div class="bg-slate-900/50 border border-white/10 p-8 rounded-3xl glow">
+            <form id="challengeForm" class="space-y-4">
+                <input type="email" id="emailInput" placeholder="Enter your best email..." required 
+                       class="w-full bg-slate-950 border border-white/10 p-4 rounded-xl text-white focus:border-blue-500 outline-none transition">
+                <button type="submit" id="submitBtn" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 rounded-xl transition shadow-lg shadow-blue-600/30">
+                    START THE CHALLENGE →
+                </button>
+            </form>
+            <p class="text-[10px] text-slate-500 mt-4 uppercase tracking-widest font-bold">Free Instant Access • No Credit Card Required</p>
+        </div>
+
+        <div class="mt-12 grid grid-cols-2 gap-4 text-left">
+            <div class="p-4 bg-white/5 rounded-2xl border border-white/5">
+                <p class="text-blue-500 font-bold">18,000</p>
+                <p class="text-xs text-slate-400 font-bold uppercase">Fresh Leads</p>
+            </div>
+            <div class="p-4 bg-white/5 rounded-2xl border border-white/5">
+                <p class="text-blue-500 font-bold">$0</p>
+                <p class="text-xs text-slate-400 font-bold uppercase">Ad Spend</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzjc9zDLt3_Q1k9jIj8KVYcVcSPMOSqA9ExSouj5RI40YuFipGLGkk5tWc-RIM1uh83-A/exec"; 
+        
+        document.getElementById('challengeForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            const emailValue = document.getElementById('emailInput').value;
+            
+            btn.innerText = "Starting Challenge...";
+            btn.disabled = true;
+
+            const formData = new URLSearchParams();
+            formData.append('email', emailValue);
+            formData.append('source', 'Challenge_Squeeze_Page');
+
+            fetch(SCRIPT_URL, { 
+                method: 'POST', 
+                mode: 'no-cors', 
+                body: formData.toString(),
+                headers: { "Content-Type": "application/x-www-form-urlencoded" }
+            })
+            .finally(() => { 
+                window.location.href = "/blog/90-day-challenge.html"; 
+            });
+        });
+    </script>
+</body>
+</html>

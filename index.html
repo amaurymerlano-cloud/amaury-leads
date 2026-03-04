@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2592/2592317.png" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The 2026 Affiliate Launchpad | Free System</title>
@@ -33,17 +34,35 @@
         <p class="mt-6 text-slate-500 text-sm italic">Join 1,200+ affiliates scaling with this exact setup.</p>
     </div>
 
-    <script>
-        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzjc9zDLt3_Q1k9jIj8KVYcVcSPMOSqA9ExSouj5RI40YuFipGLGkk5tWc-RIM1uh83-A/exec"; 
-        document.getElementById('captureForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const btn = document.getElementById('submitBtn'); btn.innerText = "Provisioning...";
-            fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify({ email: document.getElementById('emailInput').value, source: "Launchpad_LP" })})
-            .finally(() => { 
-                // Redirect to the High-Energy Sales Page (Site B)
-                window.location.href = "/sales.html?src=launchpad_lead"; 
-            });
+   <script>
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzjc9zDLt3_Q1k9jIj8KVYcVcSPMOSqA9ExSouj5RI40YuFipGLGkk5tWc-RIM1uh83-A/exec"; 
+    
+    document.getElementById('captureForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const btn = document.getElementById('submitBtn'); 
+        const emailValue = document.getElementById('emailInput').value;
+        
+        btn.innerText = "Sending Guide...";
+        btn.disabled = true;
+
+        // Create form-encoded data that Google Script understands
+        const formData = new URLSearchParams();
+        formData.append('email', emailValue);
+        formData.append('source', 'Launchpad_LP');
+
+        fetch(SCRIPT_URL, { 
+            method: 'POST', 
+            mode: 'no-cors', 
+            body: formData.toString(),
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            }
+        })
+        .finally(() => { 
+            // Redirect to the High-Energy Sales Page
+            window.location.href = "/sales.html?src=launchpad_lead"; 
         });
-    </script>
+    });
+</script>
 </body>
 </html>
